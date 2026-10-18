@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2 - AITU Hack 2026 Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Отображение сообщений об ошибках только после взаимодействия с полем пользователя (:user-invalid) */
+    .invalid-feedback {
+      display: none;
+    }
+    input:user-invalid ~ .invalid-feedback,
+    select:user-invalid ~ .invalid-feedback,
+    textarea:user-invalid ~ .invalid-feedback {
+      display: block;
+    }
+    input:user-invalid,
+    select:user-invalid,
+    textarea:user-invalid {
+      border-color: #dc3545;
+    }
+    input:user-valid,
+    select:user-valid,
+    textarea:user-valid {
+      border-color: #198754;
+    }
+  </style>
+</head>
+<body class="bg-light py-5">
+
+<div class="container" style="max-width: 650px;">
+  <div class="card shadow-sm p-4">
+    <h2 class="mb-4">Registration for AITU Hack 2026</h2>
+    
+    <form>
+      <!-- Full name -->
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Full name *</label>
+        <input type="text" class="form-control" id="fullName" minlength="2" maxlength="40" required>
+        <div class="invalid-feedback">Must be between 2 and 40 characters.</div>
+      </div>
+
+      <!-- University email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">University email *</label>
+        <input type="email" class="form-control" id="email" required>
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+
+      <!-- Age & Team size -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="age" class="form-label">Age *</label>
+          <input type="number" class="form-control" id="age" min="16" max="30" step="1" required>
+          <div class="invalid-feedback">Whole number between 16 and 30.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="teamSize" class="form-label">Team size *</label>
+          <input type="number" class="form-control" id="teamSize" min="1" max="4" step="1" required>
+          <div class="invalid-feedback">Whole number between 1 and 4.</div>
+        </div>
+      </div>
+
+      <!-- Track -->
+      <div class="mb-3">
+        <label for="track" class="form-label">Track *</label>
+        <select class="form-select" id="track" required>
+          <option value="" disabled selected>Choose...</option>
+          <option value="Web">Web</option>
+          <option value="Mobile">Mobile</option>
+          <option value="AI">AI</option>
+          <option value="GameDev">GameDev</option>
+        </select>
+        <div class="invalid-feedback">Please select a valid track.</div>
+      </div>
+
+      <!-- Arrival day & Check-in time -->
+      <div class="row g-3 mb-3">
+        <div class="col-md-6">
+          <label for="arrivalDay" class="form-label">Arrival day</label>
+          <input type="date" class="form-control" id="arrivalDay" min="2026-11-20" max="2026-11-22">
+          <div class="invalid-feedback">Must be between 20 and 22 November 2026.</div>
+        </div>
+        <div class="col-md-6">
+          <label for="checkIn" class="form-label">Check-in time *</label>
+          <input type="time" class="form-control" id="checkIn" min="09:00" max="18:00" step="1800" required>
+          <div class="invalid-feedback">09:00-18:00, every 30 minutes.</div>
+        </div>
+      </div>
+
+      <!-- Entry fee -->
+      <div class="mb-3">
+        <label for="fee" class="form-label">Entry fee *</label>
+        <input type="number" class="form-control" id="fee" min="0" max="5000" step="500" required>
+        <div class="invalid-feedback">0-5000 T, in steps of 500.</div>
+      </div>
+
+      <!-- Experience level -->
+      <div class="mb-3">
+        <label class="form-label d-block">Experience level *</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="exp" id="exp1" value="Beginner" required>
+          <label class="form-check-label" for="exp1">Beginner</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="exp" id="exp2" value="Intermediate" required>
+          <label class="form-check-label" for="exp2">Intermediate</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="exp" id="exp3" value="Advanced" required>
+          <label class="form-check-label" for="exp3">Advanced</label>
+        </div>
+      </div>
+
+      <!-- GitHub profile -->
+      <div class="mb-3">
+        <label for="github" class="form-label">GitHub profile</label>
+        <input type="url" class="form-control" id="github" placeholder="https://github.com/username">
+        <div class="invalid-feedback">Must be a valid full URL (e.g. https://...).</div>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label for="pwd" class="form-label">Password *</label>
+        <input type="password" class="form-control" id="pwd" minlength="8" maxlength="20" required>
+        <div class="invalid-feedback">Must be 8-20 characters long.</div>
+      </div>
+
+      <!-- Motivation -->
+      <div class="mb-3">
+        <label for="motivation" class="form-label">Motivation *</label>
+        <textarea class="form-control" id="motivation" rows="3" minlength="50" maxlength="300" required></textarea>
+        <div class="invalid-feedback">Must be 50-300 characters.</div>
+      </div>
+
+      <!-- Rules agreement -->
+      <div class="mb-4 form-check">
+        <input type="checkbox" class="form-check-input" id="rules" required>
+        <label class="form-check-label" for="rules">I agree to the rules *</label>
+        <div class="invalid-feedback">You must agree before submitting.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

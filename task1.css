@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #0F6B5F;
+  --color-secondary: #F2A93B;
+  --color-dark: #16302B;
+  --color-bg: #E8ECEB;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  padding: 20px 0;
+}
+
+.ticket-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ticket-header {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 24px 32px;
+  border-radius: 20px 20px 0 0;
+}
+
+.ticket-header h2 {
+  font-weight: 700;
+  margin: 0;
+}
+
+.ticket-body {
+  padding: 32px;
+}
+
+/* Radio Toggle (One way / Round trip) */
+.trip-type-toggle {
+  background-color: #f1f3f2;
+  border-radius: 50rem;
+  padding: 4px;
+  display: inline-flex;
+}
+
+.trip-type-toggle .btn-check + .btn {
+  border-radius: 50rem;
+  border: none;
+  color: var(--color-dark);
+  font-weight: 500;
+  padding: 8px 24px;
+}
+
+.trip-type-toggle .btn-check:checked + .btn {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+/* Inputs styling */
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  font-size: 0.95rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.25rem rgba(15, 107, 95, 0.25);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  color: var(--color-dark);
+}
+
+/* Custom Buttons */
+.btn-find {
+  background-color: var(--color-secondary);
+  color: var(--color-dark);
+  font-weight: 700;
+  border-radius: 50rem;
+  padding: 12px 36px;
+  border: none;
+}
+
+.btn-find:hover {
+  background-color: #e0982d;
+  color: var(--color-dark);
+}
+
+.btn-clear {
+  background-color: #ffffff;
+  color: var(--color-dark);
+  font-weight: 600;
+  border-radius: 50rem;
+  padding: 12px 36px;
+  border: 1px solid #ccc;
+}
+
+.btn-clear:hover {
+  background-color: #f1f1f1;
+}
