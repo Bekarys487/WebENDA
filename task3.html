@@ -12,7 +12,6 @@
   <div class="card shadow-sm p-4">
     <h1 class="h2 mb-4">Reserve a table</h1>
     <form>
-      <!-- Fixed 1 & 2: Added label, type, name, id for Name and Email -->
       <div class="mb-3">
         <label for="userName" class="form-label">Your name</label>
         <input type="text" class="form-control" id="userName" name="userName" required>
@@ -23,7 +22,6 @@
         <input type="email" class="form-control" id="userEmail" name="userEmail" required>
       </div>
 
-      <!-- Fixed 3 & 4: Correct type="tel" and type="number" -->
       <div class="mb-3">
         <label for="phone" class="form-label">Phone</label>
         <input type="tel" class="form-control" id="phone" name="phone" required>
@@ -34,13 +32,11 @@
         <input type="number" class="form-control" id="people" name="people" min="1" max="20" required>
       </div>
 
-      <!-- Fixed 5: Native type="date" -->
       <div class="mb-3">
         <label for="resDate" class="form-label">Date</label>
         <input type="date" class="form-control" id="resDate" name="resDate" required>
       </div>
 
-      <!-- Fixed 6 & 7: Radio buttons with same name, unique id, connected labels -->
       <div class="mb-3">
         <label class="form-label d-block">Seating:</label>
         <div class="form-check form-check-inline">
@@ -53,7 +49,6 @@
         </div>
       </div>
 
-      <!-- Fixed 8: Added select label and name attribute -->
       <div class="mb-3">
         <label for="mealType" class="form-label">Meal Type</label>
         <select class="form-select" id="mealType" name="mealType">
@@ -62,19 +57,16 @@
         </select>
       </div>
 
-      <!-- Fixed 9: Added label and name for textarea -->
       <div class="mb-3">
         <label for="comments" class="form-label">Comments</label>
         <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
       </div>
 
-      <!-- Fixed 10: Checkbox inside label with id and for -->
       <div class="mb-4 form-check">
         <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
         <label class="form-check-label" for="terms">I agree to the terms</label>
       </div>
 
-      <!-- Fixed 11: Replaced div with real button element -->
       <button type="submit" class="btn btn-primary w-100">Reserve</button>
     </form>
   </div>

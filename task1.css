@@ -39,7 +39,6 @@ body {
   padding: 32px;
 }
 
-/* Radio Toggle (One way / Round trip) */
 .trip-type-toggle {
   background-color: #f1f3f2;
   border-radius: 50rem;
@@ -60,7 +59,6 @@ body {
   color: #ffffff;
 }
 
-/* Inputs styling */
 .form-control, .form-select {
   border-radius: 12px;
   border: 1px solid #dcdcdc;
@@ -81,7 +79,6 @@ body {
   color: var(--color-dark);
 }
 
-/* Custom Buttons */
 .btn-find {
   background-color: var(--color-secondary);
   color: var(--color-dark);
