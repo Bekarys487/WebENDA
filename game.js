@@ -15,7 +15,6 @@ let secret = [];
 let attempts = 0;
 let finished = false;
 
-// whole number from min to max, both included
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
