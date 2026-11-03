@@ -157,7 +157,7 @@ function solve19() {
 function solve20() {
   return $('.level[data-level=1] .visitor.crumbs:not(.cup)').filter(function () {
     var m = $(this).data('min');
-    return m > 1260 && m < 1290;        // after 21:00, before 21:30
+    return m > 1260 && m < 1290;        
   }).filter(function () {
     return $(this).prev().add($(this).next()).filter('.aitu').length > 0;
   });
@@ -227,7 +227,7 @@ function afterBuild() {
 afterBuild();
 
 function onResult(found, n) {
-  if (n >= 19) { return; }        
+  if (n >= 19) { return; }            
   var bright = found;
   if (found.is('.zone')) { bright = found.find('.visitor'); }
   $(STABLE).not(bright).stop(true).fadeTo(300, 0.2);
@@ -286,7 +286,13 @@ function openPanel(g) {
 
   p.css({ width: 44, height: 44, left: o.left, top: o.top, opacity: 0.3 });
   panel = p;
-  p.animate({ width: W, height: H, left: left, top: o.top + 50, opacity: 1 }, 300);
+  var view = $(window).scrollTop() + $(window).height();
+  var top = o.top + 50;
+  if (top + H > view) {
+    top = o.top - H - 6;
+    if (top < $(window).scrollTop() + 6) { top = $(window).scrollTop() + 6; }
+  }
+  p.animate({ width: W, height: H, left: left, top: top, opacity: 1 }, 300);
 }
 
 $('#mansion').on('click', '.visitor', function () {
