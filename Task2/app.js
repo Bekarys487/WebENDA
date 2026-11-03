@@ -1,3 +1,4 @@
+// ---------- PARTY: the party from the picture ----------
 function newPerson(name, color, time, aitu, items) {
   return { name: name, color: color, time: time, aitu: aitu, items: items };
 }
@@ -36,6 +37,7 @@ var PARTY = [
 
 var SYMBOLS = { phone: '📱', glasses: '👓', bag: '👜', cup: '☕', crumbs: '🍰' };
 
+// ---------- helpers ----------
 function toMinutes(t) {
   var parts = t.split(':');
   return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
@@ -80,6 +82,7 @@ function buildHouse() {
   if (typeof afterBuild === 'function') { afterBuild(); }
 }
 
+// ---------- the 20 cases: one jQuery chain each, searching the page ----------
 function solve1() {
   return $('.zone[data-zone=hall] .visitor');
 }
@@ -157,7 +160,7 @@ function solve19() {
 function solve20() {
   return $('.level[data-level=1] .visitor.crumbs:not(.cup)').filter(function () {
     var m = $(this).data('min');
-    return m > 1260 && m < 1290;        
+    return m > 1260 && m < 1290;        // after 21:00, before 21:30
   }).filter(function () {
     return $(this).prev().add($(this).next()).filter('.aitu').length > 0;
   });
@@ -186,6 +189,7 @@ var TASKS = [
   ['Who took the cake?', solve20]
 ];
 
+// ---------- run a case ----------
 function runCase(n) {
   buildHouse();
   var item = TASKS[n - 1];
@@ -193,6 +197,7 @@ function runCase(n) {
 
   if (typeof onResult === 'function') { onResult(found, n); }
 
+  // found crowd jump once (zones only get highlighted)
   found.not('.zone').animate({ top: -14 }, 150).animate({ top: 0 }, 150);
   found.addClass('mark');
 
@@ -205,6 +210,7 @@ function runCase(n) {
   $('#answer code').text(code);
 }
 
+// ---------- buttons ----------
 for (var i = 0; i < TASKS.length; i++) {
   $('#caseBar').append('<button title="' + TASKS[i][0] + '">Case ' + (i + 1) + '</button>');
 }
@@ -214,6 +220,7 @@ $('#caseBar').on('click', 'button[title]', function () {
 
 buildHouse();
 
+/* ================= TASK 2 ================= */
 var panel = null;
 var WORDS = { phone: 'a phone', glasses: 'glasses', bag: 'a bag', cup: 'a cup', crumbs: 'cake crumbs' };
 var STABLE = '.visitor:not(.outgoing):not(.incoming)';
@@ -224,10 +231,10 @@ function afterBuild() {
   panel = null;
   $('.zone h3').append('<button class="order">Sort by time</button>');
 }
-afterBuild();
 
+// ----- 1. Spotlight -----
 function onResult(found, n) {
-  if (n >= 19) { return; }            
+  if (n >= 19) { return; }            // cases 18 and 19 change the party
   var bright = found;
   if (found.is('.zone')) { bright = found.find('.visitor'); }
   $(STABLE).not(bright).stop(true).fadeTo(300, 0.2);
@@ -237,6 +244,7 @@ $('#resetBtn').click(function () {
   $(STABLE).stop(true).fadeTo(300, 1);
 });
 
+// ----- 2. Guest card -----
 function closePanel() {
   if (panel === null) { return; }
   var p = panel;
@@ -286,6 +294,7 @@ function openPanel(g) {
 
   p.css({ width: 44, height: 44, left: o.left, top: o.top, opacity: 0.3 });
   panel = p;
+  // show the card below the avatar; if it does not fit on the screen, show it above
   var view = $(window).scrollTop() + $(window).height();
   var top = o.top + 50;
   if (top + H > view) {
@@ -308,6 +317,7 @@ $(document).on('keydown', function (e) {
   if (e.key === 'Escape') { closePanel(); }
 });
 
+// ----- 3. Move -----
 function findZone(id) {
   for (var i = 0; i < PARTY.length; i++) {
     if (PARTY[i].id === id) { return PARTY[i]; }
@@ -319,6 +329,7 @@ function sendVisitor(g, toId) {
   var name = g.data('name');
   var visitor = null;
 
+  // change the array: remove from the old zone, add to the end of the new zone
   for (var r = 0; r < PARTY.length; r++) {
     for (var k = 0; k < PARTY[r].crowd.length; k++) {
       if (PARTY[r].crowd[k].name === name) {
@@ -333,17 +344,20 @@ function sendVisitor(g, toId) {
   var margin = parseFloat(g.css('marginLeft'));
   var from = g.offset();
 
+  // new card in the new zone: measure its final place, then make it narrow
   var newCard = $(buildCard(visitor)).addClass('incoming').css('visibility', 'hidden');
   $('.zone[data-zone=' + toId + '] .crowd').append(newCard);
   var to = newCard.offset();
   newCard.css({ width: 0, marginLeft: 0, marginRight: 0 });
   newCard.animate({ width: w, marginLeft: margin, marginRight: margin }, 600);
 
+  // old card: the empty place closes slowly
   g.addClass('outgoing').stop(true).css('visibility', 'hidden');
   g.animate({ width: 0, marginLeft: 0, marginRight: 0 }, 600, function () {
     g.remove();
   });
 
+  // flying copy
   var glide = g.clone().removeClass('outgoing mark').addClass('glide');
   glide.css({ position: 'absolute', left: from.left, top: from.top, margin: 0, width: w, visibility: 'visible', opacity: 1 });
   glide.appendTo('body');
@@ -360,6 +374,7 @@ $('body').on('click', '.panel button[data-to]', function () {
   sendVisitor(g, toId);
 });
 
+// ----- 4. Sort by time -----
 $('#mansion').on('click', '.order', function () {
   var zone = $(this).closest('.zone');
   var box = zone.find('.crowd');
@@ -368,11 +383,14 @@ $('#mansion').on('click', '.order', function () {
   var arr = findZone(zone.data('zone')).crowd;
   zone.data('sorted', sorted);
 
+  // 1) remember where every card is now
   var oldPos = [];
   cards.each(function (i) { oldPos[i] = $(this).offset(); });
 
+  // 2) stop old sliding and reset
   cards.stop('sortq', true).css({ left: 0, top: 0 });
 
+  // 3) put the cards in the new order
   var list = cards.get();
   list.sort(function (a, b) {
     if (sorted) { return $(a).data('min') - $(b).data('min'); }
@@ -380,6 +398,7 @@ $('#mansion').on('click', '.order', function () {
   });
   for (var i = 0; i < list.length; i++) { box.append(list[i]); }
 
+  // 4) move every card from the old place to the new place
   cards.each(function (i) {
     var now = $(this).offset();
     $(this).css({ left: oldPos[i].left - now.left, top: oldPos[i].top - now.top });
