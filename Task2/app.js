@@ -260,7 +260,7 @@ function describeThings(items) {
   for (var i = 0; i < items.length; i++) { words.push(WORDS[items[i]]); }
   if (words.length === 0) { return 'Has nothing'; }
   if (words.length === 1) { return 'Has ' + words[0]; }
-  var last = words.panel();
+  var last = words.pop();
   return 'Has ' + words.join(', ') + ' and ' + last;
 }
 
