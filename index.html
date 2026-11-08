@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-dark text-white">
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top border-bottom border-secondary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top border-bottom border-secondary" aria-label="Main navigation">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
           <span class="fs-2 fw-bold text-uppercase brand-logo">BIGFOOT</span>
@@ -24,21 +24,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto text-uppercase fw-semibold gap-lg-3">
-            <li class="nav-item">
-              <a class="nav-link active" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="catalog.html">Catalog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="catalog.html#size-guide">Size Guide</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="catalog.html#preorder">Pre-Order Drops</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about-beka">About Beka</a>
-            </li>
+            <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html">Catalog</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html#size-guide">Size Guide</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html#preorder">Pre-Order Drops</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about-beka">About Beka</a></li>
           </ul>
         </div>
       </div>
@@ -50,7 +41,7 @@
       <div class="container py-lg-5">
         <div class="row align-items-center gy-4">
           <div class="col-lg-7 text-center text-lg-start">
-            <span class="badge bg-danger text-uppercase px-3 py-2 mb-3 fs-6">Daily Kicks & Rare Grails</span>
+            <span class="badge bg-danger text-uppercase px-3 py-2 mb-3 fs-6">Daily Kicks &amp; Rare Grails</span>
             <h1 class="display-1 fw-bold text-uppercase mb-3 hero-title">
               Step Big <br><span class="text-stroke">with Beka.</span>
             </h1>
@@ -64,27 +55,27 @@
           </div>
           <div class="col-lg-5 text-center">
             <div class="hero-img-box p-3 rounded shadow-lg bg-black">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="BIGFOOT Sneaker Hero" class="img-fluid rounded hero-img">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80" alt="Red Nike Air Max sneaker on a red background" class="img-fluid rounded hero-img">
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-5 bg-black text-white">
+    <section class="py-5 bg-black text-white" aria-labelledby="trendingHeading">
       <div class="container">
         <div class="text-center mb-5">
-          <h2 class="display-4 text-uppercase fw-bold">Trending Releases</h2>
+          <h2 id="trendingHeading" class="display-4 text-uppercase fw-bold">Trending Releases</h2>
           <p class="text-secondary">Handpicked silhouettes selected by Beka</p>
         </div>
 
-        <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="featuredCarousel" class="carousel slide" data-bs-ride="carousel" aria-label="Trending sneakers">
           <div class="carousel-inner rounded border border-secondary">
-            
+
             <div class="carousel-item active p-4 bg-dark">
               <div class="row align-items-center">
                 <div class="col-md-6 text-center">
-                  <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=700&q=80" class="img-fluid rounded carousel-img" alt="Travis Scott Air Jordan">
+                  <img src="https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&w=700&q=80" class="img-fluid rounded carousel-img" alt="Travis Scott x Air Jordan 1 Low sneaker">
                 </div>
                 <div class="col-md-6 mt-3 mt-md-0">
                   <span class="badge bg-danger mb-2 text-uppercase">RARE GRAIL</span>
@@ -99,7 +90,7 @@
             <div class="carousel-item p-4 bg-dark">
               <div class="row align-items-center">
                 <div class="col-md-6 text-center">
-                  <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=700&q=80" class="img-fluid rounded carousel-img" alt="New Balance 9060">
+                  <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=700&q=80" class="img-fluid rounded carousel-img" alt="New Balance 9060 Sea Salt sneaker">
                 </div>
                 <div class="col-md-6 mt-3 mt-md-0">
                   <span class="badge bg-warning text-dark mb-2 text-uppercase">TRENDING NOW</span>
@@ -114,7 +105,7 @@
             <div class="carousel-item p-4 bg-dark">
               <div class="row align-items-center">
                 <div class="col-md-6 text-center">
-                  <img src="https://images.unsplash.com/photo-1597045566677-8cf032ed6634?auto=format&fit=crop&w=700&q=80" class="img-fluid rounded carousel-img" alt="Nike Dunk Low">
+                  <img src="https://images.unsplash.com/photo-1597045566677-8cf032ed6634?auto=format&fit=crop&w=700&q=80" class="img-fluid rounded carousel-img" alt="Nike Dunk Low Retro Panda sneaker">
                 </div>
                 <div class="col-md-6 mt-3 mt-md-0">
                   <span class="badge bg-secondary mb-2 text-uppercase">DAILY ESSENTIAL</span>
@@ -143,7 +134,7 @@
       <div class="container py-4">
         <div class="row align-items-center gy-4">
           <div class="col-md-4 text-center">
-            <div class="founder-avatar rounded-circle mx-auto d-flex align-items-center justify-content-center bg-danger text-white display-3 fw-bold shadow">
+            <div class="founder-avatar rounded-circle mx-auto d-flex align-items-center justify-content-center bg-danger text-white display-3 fw-bold shadow" aria-hidden="true">
               BEKA
             </div>
           </div>
@@ -155,7 +146,7 @@
                 "I founded BIGFOOT because I believe sneakers are more than rubber and fabric — they represent your personal footprint in the world. Whether you're looking for clean daily pairs or hunting down impossible-to-find grails, it's about stepping big toward your goals."
               </p>
               <footer class="blockquote-footer text-danger mt-2 fs-5">
-                Bekarys (Beka), <cite title="Source Title">Founder & CEO of BIGFOOT Store</cite>
+                Bekarys (Beka), <cite>Founder &amp; CEO of BIGFOOT Store</cite>
               </footer>
             </blockquote>
           </div>
@@ -163,8 +154,9 @@
       </div>
     </section>
 
-    <section class="py-5 bg-black text-white">
+    <section class="py-5 bg-black text-white" aria-labelledby="whyHeading">
       <div class="container">
+        <h2 id="whyHeading" class="visually-hidden">Why shop at BIGFOOT</h2>
         <div class="row g-4 text-center">
           <div class="col-md-4">
             <div class="p-4 bg-dark rounded border border-secondary h-100 feature-card">
@@ -189,12 +181,15 @@
     </section>
   </main>
 
+  <div id="toast" role="status" aria-live="polite"></div>
+
   <footer class="bg-black text-white border-top border-secondary py-4">
     <div class="container text-center text-md-start">
       <div class="row gy-3 align-items-center">
         <div class="col-md-6">
-          <h4 class="text-uppercase fw-bold fs-3 mb-1">BIGFOOT Store</h4>
-          <p class="text-secondary mb-0">Step Big with Beka. All rights reserved &copy; 2026.</p>
+          <h2 class="text-uppercase fw-bold fs-3 mb-1">BIGFOOT Store</h2>
+          <p class="text-secondary mb-1">Step Big with Beka. All rights reserved &copy; 2026.</p>
+          <p class="text-secondary small mb-0">Credits: photos from Unsplash; fonts from Google Fonts; Bootstrap 5.3; jQuery 3.7.1; code assisted by Claude (Anthropic).</p>
         </div>
         <div class="col-md-6 text-md-end">
           <a href="index.html" class="text-secondary text-decoration-none me-3">Home</a>
@@ -207,5 +202,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/effects.js"></script>
 </body>
 </html>

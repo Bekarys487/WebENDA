@@ -23,7 +23,7 @@ $(function () {
     $btn.attr("aria-expanded", String(!isOpen));
   });
 
-  // 4. Easter egg: type "beka" anywhere except inside form fields
+  // 3. Easter egg: type "beka" anywhere except inside form fields
   let keyBuffer = "";
   $(document).on("keydown", function (e) {
     if ($(e.target).is("input, textarea, select") || e.key.length !== 1) return;

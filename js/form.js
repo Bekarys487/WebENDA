@@ -45,19 +45,30 @@ function validateField(id) {
   return message === "";
 }
 
+function clearErrors() {
+  form.querySelectorAll(".is-invalid").forEach(f => f.classList.remove("is-invalid"));
+  form.querySelectorAll(".invalid-feedback").forEach(e => (e.textContent = ""));
+}
+
 if (form) {
   Object.keys(rules).forEach(id => {
     const field = form.elements[id];
     if (!field) return;
     field.addEventListener("blur", () => validateField(id));
-    field.addEventListener(field.type === "checkbox" || field.tagName === "SELECT" ? "change" : "input", () => {
+    const evt = field.type === "checkbox" || field.tagName === "SELECT" ? "change" : "input";
+    field.addEventListener(evt, () => {
       if (field.classList.contains("is-invalid")) validateField(id);
     });
   });
 
-  // switching to "custom" makes notes required: re-check notes if it was already touched
+  // notes become required for "custom": re-check them when the category changes
   form.elements.sneakerCategory.addEventListener("change", () => {
     if (form.elements.notes.classList.contains("is-invalid") || form.elements.notes.value) validateField("notes");
+  });
+
+  // the category rule depends on the reserve list: re-check when the list changes
+  $(document).on("cart:changed", () => {
+    if (form.elements.sneakerCategory.classList.contains("is-invalid")) validateField("sneakerCategory");
   });
 
   form.addEventListener("submit", e => {
@@ -70,7 +81,7 @@ if (form) {
       return;
     }
 
-    const name = form.elements.fullName.value.trim().split(" ")[0];
+    const name = form.elements.fullName.value.trim().split(/\s+/)[0];
     const total = $("#cartTotal").text() || "$0";
 
     $("#formSuccess")
@@ -78,6 +89,7 @@ if (form) {
       .stop(true, true).hide().slideDown(300).delay(5000).slideUp(300);
 
     form.reset();
+    clearErrors();
     if (typeof window.clearCart === "function") window.clearCart();
   });
 }

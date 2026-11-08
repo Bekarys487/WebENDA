@@ -185,7 +185,6 @@ a:focus-visible, button:focus-visible, .form-check-input:focus-visible {
 /* ---------- Easter egg ---------- */
 body.secret-mode { box-shadow: inset 0 0 0 5px var(--accent-red); }
 
-
 /* ---------- Responsive ---------- */
 @media (max-width: 575.98px) {
   .hero-title { font-size: 2.8rem !important; }
