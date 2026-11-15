@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 // All store data lives here as arrays of objects.
->>>>>>> save-work
 const photo = id => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=600&q=80`;
 
 const sneakers = [
@@ -15,8 +12,6 @@ const sneakers = [
   { id: 8, name: "ASICS Gel-Kayano 14", brand: "ASICS", price: 150, category: "performance", image: photo("1491553895911-0055eca6402d"), desc: "Y2K stability runner with gel cushioning for long days." },
   { id: 9, name: "Air Force 1 White", brand: "Nike", price: 115, category: "daily", image: photo("1600185365926-3a2ce3cdb9eb"), desc: "Clean all-white leather pair that goes with everything." },
   { id: 10, name: "Yeezy Boost 350", brand: "Adidas", price: 380, category: "rare", image: photo("1606107557195-0e29a4b5b4aa"), desc: "Primeknit upper with the famous zebra stripe pattern." }
-<<<<<<< HEAD
-=======
 ];
 
 // Size scale (men's). cm = foot length. Used by the size guide table, the size finder and the form.
@@ -30,5 +25,4 @@ const sizes = [
   { us: 12,   eu: 46,   uk: 11,   cm: 30.0, fit: "Bigfoot Entry" },
   { us: 13,   eu: 47.5, uk: 12,   cm: 31.0, fit: "Bigfoot Massive" },
   { us: 14,   eu: 48.5, uk: 13,   cm: 32.0, fit: "Bigfoot Massive" }
->>>>>>> save-work
 ];
