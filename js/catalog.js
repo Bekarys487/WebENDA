@@ -1,16 +1,35 @@
+<<<<<<< HEAD
 $(function () {
   const FALLBACK_IMG = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80";
 
   let cart = [];
+=======
+// Catalog: cards built from the `sneakers` array, with search, category filter and price sort.
+$(function () {
+  if (!$("#sneakerGrid").length) return;
+
+  const FALLBACK_IMG = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80";
+  const CATEGORY_TAGS = {
+    daily: { label: "Daily", css: "" },
+    performance: { label: "Performance", css: " tag--hot" },
+    rare: { label: "Rare grail", css: " tag--rare" }
+  };
+
+>>>>>>> save-work
   let currentCategory = "all";
   let searchQuery = "";
   let currentSort = "default";
 
+<<<<<<< HEAD
   // ---------- Render catalog ----------
+=======
+  // ---------- Render ----------
+>>>>>>> save-work
   function renderSneakers(items) {
     const $grid = $("#sneakerGrid").empty();
     const $emptyState = $("#emptyState");
 
+<<<<<<< HEAD
     if (items.length === 0) {
       $emptyState.removeAttr("hidden");
       $("#resultCount").text("Showing 0 pairs");
@@ -36,12 +55,48 @@ $(function () {
           </div>
         </div>`);
     });
+=======
+    $("#resultCount").text(`Showing ${items.length} of ${sneakers.length} ${sneakers.length === 1 ? "pair" : "pairs"}`);
+
+    if (items.length === 0) {
+      $emptyState.removeAttr("hidden");
+      return;
+    }
+    $emptyState.attr("hidden", true);
+
+    items.forEach(sneaker => {
+      const tag = CATEGORY_TAGS[sneaker.category] || CATEGORY_TAGS.daily;
+      $grid.append(`
+        <article class="sneaker-card">
+          <div class="sneaker-media">
+            <img src="${sneaker.image}" alt="${sneaker.name} by ${sneaker.brand}" loading="lazy"
+                 onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+            <span class="tag${tag.css}">${tag.label}</span>
+          </div>
+          <div class="sneaker-body">
+            <p class="sneaker-brand">${sneaker.brand}</p>
+            <h3 class="sneaker-name">${sneaker.name}</h3>
+            <p class="sneaker-desc">${sneaker.desc}</p>
+            <div class="sneaker-foot">
+              <span class="sneaker-price">${formatPrice(sneaker.price)}</span>
+              <button type="button" class="reserve-btn" data-id="${sneaker.id}" data-name="${sneaker.name}">Reserve</button>
+            </div>
+          </div>
+        </article>`);
+    });
+
+    $grid.stop(true, true).hide().fadeIn(250);
+    syncReserveButtons();   // from cart.js: show "In your list" on pairs already reserved
+>>>>>>> save-work
   }
 
   // ---------- Filter, search, sort ----------
   function filterAndSort() {
+<<<<<<< HEAD
     if (typeof sneakers === "undefined") return;
 
+=======
+>>>>>>> save-work
     const result = sneakers.filter(s => {
       const matchesCategory = currentCategory === "all" || s.category === currentCategory;
       const haystack = `${s.name} ${s.brand} ${s.desc} ${s.category}`.toLowerCase();
@@ -54,6 +109,7 @@ $(function () {
     renderSneakers(result);
   }
 
+<<<<<<< HEAD
   // ---------- Reserve list (cart) ----------
   function updateCartUI() {
     const $cartList = $("#cartList").empty();
@@ -92,6 +148,15 @@ $(function () {
     updateCartUI();
   };
 
+=======
+  function setActiveChip(category) {
+    $(".filter-btn").each(function () {
+      const active = $(this).data("category") === category;
+      $(this).toggleClass("is-active", active).attr("aria-pressed", String(active));
+    });
+  }
+
+>>>>>>> save-work
   // ---------- Events ----------
   $("#searchInput").on("input", function () {
     searchQuery = $(this).val().toLowerCase().trim();
@@ -99,9 +164,14 @@ $(function () {
   });
 
   $(".filter-btn").on("click", function () {
+<<<<<<< HEAD
     $(".filter-btn").removeClass("btn-danger").addClass("btn-outline-secondary text-white").attr("aria-pressed", "false");
     $(this).removeClass("btn-outline-secondary text-white").addClass("btn-danger").attr("aria-pressed", "true");
     currentCategory = $(this).data("category");
+=======
+    currentCategory = $(this).data("category");
+    setActiveChip(currentCategory);
+>>>>>>> save-work
     filterAndSort();
   });
 
@@ -112,6 +182,7 @@ $(function () {
 
   $("#resetFilters").on("click", function () {
     $("#searchInput").val("");
+<<<<<<< HEAD
     searchQuery = "";
     currentCategory = "all";
     currentSort = "default";
@@ -145,4 +216,15 @@ $(function () {
   // ---------- Init ----------
   if (typeof sneakers !== "undefined") filterAndSort();
   updateCartUI();
+=======
+    $("#sortSelect").val("default");
+    searchQuery = "";
+    currentCategory = "all";
+    currentSort = "default";
+    setActiveChip("all");
+    filterAndSort();
+  });
+
+  filterAndSort();
+>>>>>>> save-work
 });
